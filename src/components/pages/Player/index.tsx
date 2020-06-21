@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import SafeAreaView from 'react-native-safe-area-view';
-import { Button } from 'react-native-paper';
+import { View, Text, StyleSheet /*TouchableOpacity*/ } from 'react-native';
+//import SafeAreaView from 'react-native-safe-area-view';
+//import { Button } from 'react-native-paper';
 
 const styles = StyleSheet.create({
   container: {

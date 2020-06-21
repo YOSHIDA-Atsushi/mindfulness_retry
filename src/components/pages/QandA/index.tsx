@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 export default function QA() {
   return (
     <View style={styles.container}>
-      <Text>Q&A</Text>
+      <Text>Q＆A</Text>
       <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
         Press me
       </Button>
