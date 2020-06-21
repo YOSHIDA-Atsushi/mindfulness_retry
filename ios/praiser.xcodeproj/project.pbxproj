@@ -12,6 +12,10 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		18B3F112249F56A7001F0BA9 /* mindfulness2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 18B3F10F249F56A5001F0BA9 /* mindfulness2.m4a */; };
+		18B3F113249F56A7001F0BA9 /* mindfulness1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 18B3F110249F56A6001F0BA9 /* mindfulness1.m4a */; };
+		18B3F114249F56A7001F0BA9 /* mindfulness3.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 18B3F111249F56A7001F0BA9 /* mindfulness3.m4a */; };
+		18B3F117249F56C0001F0BA9 /* dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B3F116249F56C0001F0BA9 /* dummy.swift */; };
 		211EC8DC8259EF495589A876 /* libPods-praiser-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C573F40F8808B9F581AEC6E /* libPods-praiser-tvOS.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -52,6 +56,11 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = praiser/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = praiser/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = praiser/main.m; sourceTree = "<group>"; };
+		18B3F10F249F56A5001F0BA9 /* mindfulness2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = mindfulness2.m4a; sourceTree = "<group>"; };
+		18B3F110249F56A6001F0BA9 /* mindfulness1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = mindfulness1.m4a; sourceTree = "<group>"; };
+		18B3F111249F56A7001F0BA9 /* mindfulness3.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = mindfulness3.m4a; sourceTree = "<group>"; };
+		18B3F115249F56BF001F0BA9 /* praiser-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "praiser-Bridging-Header.h"; sourceTree = "<group>"; };
+		18B3F116249F56C0001F0BA9 /* dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dummy.swift; sourceTree = "<group>"; };
 		1C573F40F8808B9F581AEC6E /* libPods-praiser-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-praiser-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22DE5237141555B76E88BDD8 /* Pods-praiser-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-praiser-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-praiser-tvOSTests/Pods-praiser-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		29FB0F5D13E6E85B4D53DCF2 /* libPods-praiser-praiserTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-praiser-praiserTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,11 +136,16 @@
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				18B3F110249F56A6001F0BA9 /* mindfulness1.m4a */,
+				18B3F10F249F56A5001F0BA9 /* mindfulness2.m4a */,
+				18B3F111249F56A7001F0BA9 /* mindfulness3.m4a */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				18B3F116249F56C0001F0BA9 /* dummy.swift */,
+				18B3F115249F56BF001F0BA9 /* praiser-Bridging-Header.h */,
 			);
 			name = praiser;
 			sourceTree = "<group>";
@@ -194,7 +208,6 @@
 				54BE3ADEC3A80E273EFE802E /* Pods-praiser-tvOSTests.debug.xcconfig */,
 				22DE5237141555B76E88BDD8 /* Pods-praiser-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -294,7 +307,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1150;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -341,7 +354,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				18B3F114249F56A7001F0BA9 /* mindfulness3.m4a in Resources */,
+				18B3F113249F56A7001F0BA9 /* mindfulness1.m4a in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				18B3F112249F56A7001F0BA9 /* mindfulness2.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,6 +645,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				18B3F117249F56C0001F0BA9 /* dummy.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -682,6 +699,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9C1139391E9377769CD7A816 /* Pods-praiser-praiserTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -705,6 +723,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0265C54B24BAEF3A253F3D60 /* Pods-praiser-praiserTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = praiserTests/Info.plist;
@@ -742,6 +761,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = praiser;
+				SWIFT_OBJC_BRIDGING_HEADER = "praiser-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -764,6 +784,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = praiser;
+				SWIFT_OBJC_BRIDGING_HEADER = "praiser-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
