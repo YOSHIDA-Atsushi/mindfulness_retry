@@ -25,7 +25,7 @@ export default function PlayList() {
       <FlatList
         data={soundData}
         renderItem={({ item, index }) => (
-          <TouchableOpacity key={index.toString()} onPress={() => navigate('player')}>
+          <TouchableOpacity key={index.toString()} onPress={() => navigate('Player', { item: item })}>
             <Text style={styles.label}>{item.title}</Text>
           </TouchableOpacity>
         )}

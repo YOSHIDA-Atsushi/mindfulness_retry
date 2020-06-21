@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 //import SafeAreaView from 'react-native-safe-area-view';
 import { QandA, Settings, Player, PlayList } from './../components/pages';
-import { PLAYLIST, QANDA, SETTINGS } from './../constants/path';
+import { PLAYLIST, QANDA, SETTINGS, PLAYER } from './../constants/path';
 
 //tab
 const Tab = createBottomTabNavigator();
@@ -23,7 +23,7 @@ export default function StackNavigator() {
   return (
     <Stack.Navigator mode="modal">
       <Stack.Screen name="Home" component={TabNavigator} />
-      <Stack.Screen name="player" component={Player} />
+      <Stack.Screen name={PLAYER} component={Player} />
     </Stack.Navigator>
   );
 }
