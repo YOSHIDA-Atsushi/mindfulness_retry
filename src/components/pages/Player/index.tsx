@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image /*TouchableOpacity*/ } from 'react-native';
 //import SafeAreaView from 'react-native-safe-area-view';
-import { Button } from 'react-native-paper';
+import { IconButton } from 'react-native-paper';
 import RNTrackPlayer from 'react-native-track-player';
-import { useTrackPlayerProgress } from 'react-native-track-player';
+import { useTrackPlayerProgress, usePlaybackState } from 'react-native-track-player';
 import Slider from '@react-native-community/slider';
 
 const styles = StyleSheet.create({
@@ -32,6 +32,7 @@ function stateNumToBoolean(i: number | string): boolean {
 
 export default function Player({ route }) {
   const { position, duration } = useTrackPlayerProgress();
+  //const { playerState } = usePlaybackState();
   const { item } = route.params;
   const [isPlaying, setIsPlaying] = useState(true);
   //  const duration = item.duration;
@@ -44,6 +45,7 @@ export default function Player({ route }) {
   }, []);
   return (
     <View style={styles.container}>
+      <IconButton icon={'arrow-left'} size={30} onPress={() => console.log()} />
       <Text>{item.title}</Text>
       <Image source={item.artwork} style={{ width: 200, height: 200 }} />
       <Slider
@@ -52,11 +54,15 @@ export default function Player({ route }) {
         maximumValue={duration}
         minimumTrackTintColor="#FFFFFF"
         maximumTrackTintColor="#000000"
-        onValueChange={time => RNTrackPlayer.seekTo(time)}
+        onValueChange={time => {
+          RNTrackPlayer.seekTo(time);
+          RNTrackPlayer.play();
+        }}
         value={position}
       />
-      <Button
+      <IconButton
         icon={isPlaying ? 'pause' : 'play'}
+        size={50}
         onPress={async () => {
           //const tempState: number | string = await RNTrackPlayer.getState();
           //const tempIsPlaying: boolean = stateNumToBoolean(tempState);
@@ -68,9 +74,7 @@ export default function Player({ route }) {
           }
           setIsPlaying(!isPlaying);
         }}
-      >
-        {' '}
-      </Button>
+      />
     </View>
   );
 }
