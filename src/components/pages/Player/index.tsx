@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet /*TouchableOpacity*/ } from 'react-native';
 //import SafeAreaView from 'react-native-safe-area-view';
 import { Button } from 'react-native-paper';
@@ -17,20 +17,33 @@ const styles = StyleSheet.create({
 
 export default function Player({ route }) {
   const { item } = route.params;
-  console.log(item);
-  RNTrackPlayer.setupPlayer();
-  RNTrackPlayer.add([item]);
-  RNTrackPlayer.play();
+  const [position, setPosition] = useState(0);
+  useEffect(() => {
+    RNTrackPlayer.setupPlayer();
+    RNTrackPlayer.add([item]);
+    RNTrackPlayer.play();
+  }, []);
   return (
     <View style={styles.container}>
       <Text>{item.title}</Text>
       <Button
         icon="play"
         mode="contained"
-        onPress={() => {
-          RNTrackPlayer.pause();
+        onPress={async () => {
+          const state = await RNTrackPlayer.getState();
+          console.log(state);
+
+          if (state === 3) {
+            setPosition(await RNTrackPlayer.getPosition());
+            RNTrackPlayer.pause();
+            return;
+          }
+          RNTrackPlayer.play();
+          RNTrackPlayer.seekTo(position);
         }}
-      ></Button>
+      >
+        {' '}
+      </Button>
     </View>
   );
 }
