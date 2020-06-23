@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import { soundData } from './../../../constants/sounddata';
+import { PLAYER } from './../../../constants/path';
 
 const Layout = (props: any) => <SafeAreaView>{props.children}</SafeAreaView>;
 
@@ -25,7 +26,7 @@ export default function PlayList() {
       <FlatList
         data={soundData}
         renderItem={({ item, index }) => (
-          <TouchableOpacity key={index.toString()} onPress={() => navigate('Player', { item: item })}>
+          <TouchableOpacity key={index.toString()} onPress={() => navigate(PLAYER, { item: item })}>
             <Text style={styles.label}>{item.title}</Text>
           </TouchableOpacity>
         )}

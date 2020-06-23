@@ -23,7 +23,7 @@ export default function StackNavigator() {
   return (
     <Stack.Navigator mode="modal">
       <Stack.Screen name="Home" component={TabNavigator} />
-      <Stack.Screen name={PLAYER} component={Player} />
+      <Stack.Screen name={PLAYER} component={Player} options={({ route }) => ({ title: route.params.item.title })} />
     </Stack.Navigator>
   );
 }
