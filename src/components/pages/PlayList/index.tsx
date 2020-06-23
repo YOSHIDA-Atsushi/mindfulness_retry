@@ -5,7 +5,7 @@ import SafeAreaView from 'react-native-safe-area-view';
 import { soundData } from './../../../constants/sounddata';
 import { PLAYER } from './../../../constants/path';
 
-const Layout = (props: any) => <SafeAreaView>{props.children}</SafeAreaView>;
+//const Layout = (props: any) => <SafeAreaView>{props.children}</SafeAreaView>;
 
 const styles = StyleSheet.create({
   container: {
@@ -44,7 +44,7 @@ function Item({ item }) {
 export default function PlayList() {
   const { navigate } = useNavigation();
   return (
-    <Layout>
+    <SafeAreaView>
       <FlatList
         data={soundData}
         renderItem={({ item, index }) => (
@@ -53,6 +53,6 @@ export default function PlayList() {
           </TouchableOpacity>
         )}
       />
-    </Layout>
+    </SafeAreaView>
   );
 }

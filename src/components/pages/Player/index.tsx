@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image /*TouchableOpacity*/ } from 'react-native';
-//import SafeAreaView from 'react-native-safe-area-view';
+import { Dimensions, View, Text, StyleSheet, Image /*TouchableOpacity*/ } from 'react-native';
+import SafeAreaView from 'react-native-safe-area-view';
 import { IconButton } from 'react-native-paper';
 import RNTrackPlayer from 'react-native-track-player';
 import { useTrackPlayerProgress, TrackPlayerEvents } from 'react-native-track-player';
@@ -13,9 +13,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  label: {
-    height: 100,
+  header: {
+    flex: 1,
+    flexDirection: 'row',
   },
+  backButton: { flex: 1, alignItems: 'flex-start', marginLeft: 10 },
+
+  body: {
+    flex: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: { fontSize: 30, marginBottom: 15 },
+  time: { fontSize: 20, marginBottom: 10 },
 });
 /*
 //RNTrackPlayer.getState() returns 2 (stopped) or 3(playing). would like a boolean
@@ -49,6 +59,7 @@ export default function Player({ route }) {
   const { item } = route.params;
   console.log(duration);
   console.log(position);
+  const screenWidth = Dimensions.get('window').width;
   useEffect(() => {
     RNTrackPlayer.setupPlayer();
     RNTrackPlayer.add([item]);
@@ -67,33 +78,39 @@ export default function Player({ route }) {
     };
   }, []);
   return (
-    <View style={styles.container}>
-      <IconButton icon={'arrow-left'} size={30} onPress={onGoBack} />
-      <Text>{item.title}</Text>
-      <Image source={item.artwork} style={{ width: 200, height: 200 }} />
-      <Slider
-        style={{ width: 300, height: 40 }}
-        minimumValue={0}
-        maximumValue={duration}
-        minimumTrackTintColor="#FFFFFF"
-        maximumTrackTintColor="#000000"
-        onValueChange={time => {
-          RNTrackPlayer.seekTo(time);
-        }}
-        value={position}
-      />
-      <Text>
-        {Math.floor(position / 60)}:{addZero(Math.floor(position % 60))} / {Math.floor(duration / 60)}:
-        {addZero(Math.floor(duration % 60))}
-      </Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <View style={styles.backButton}>
+          <IconButton style={styles.backButton} icon={'arrow-left'} size={35} onPress={onGoBack} />
+        </View>
+      </View>
+      <View style={styles.body}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Image source={item.artwork} style={{ width: screenWidth * 0.9, height: screenWidth * 0.6 }} />
+        <Slider
+          style={{ width: screenWidth * 0.8, height: 40, margin: 10 }}
+          minimumValue={0}
+          maximumValue={duration}
+          minimumTrackTintColor="#FFFFFF"
+          maximumTrackTintColor="#000000"
+          onValueChange={time => {
+            RNTrackPlayer.seekTo(time);
+          }}
+          value={position}
+        />
+        <Text style={styles.time}>
+          {Math.floor(position / 60)}:{addZero(Math.floor(position % 60))} / {Math.floor(duration / 60)}:
+          {addZero(Math.floor(duration % 60))}
+        </Text>
 
-      <IconButton
-        icon={playbackState === RNTrackPlayer.STATE_PLAYING ? 'pause' : 'play'}
-        size={50}
-        onPress={() => {
-          playbackState === RNTrackPlayer.STATE_PLAYING ? RNTrackPlayer.pause() : RNTrackPlayer.play();
-        }}
-      />
-    </View>
+        <IconButton
+          icon={playbackState === RNTrackPlayer.STATE_PLAYING ? 'pause' : 'play'}
+          size={60}
+          onPress={() => {
+            playbackState === RNTrackPlayer.STATE_PLAYING ? RNTrackPlayer.pause() : RNTrackPlayer.play();
+          }}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
