@@ -16,14 +16,14 @@ const styles = StyleSheet.create({
   item: {
     backgroundColor: '#f9ddff',
     padding: 10,
-    marginVertical: 8,
+    marginTop: 20,
     marginHorizontal: 4,
     flexDirection: 'row',
+    alignItems: 'center',
   },
   title: {
     fontSize: 30,
     marginLeft: 15,
-    textAlignVertical: 'center',
   },
   tinyLogo: {
     width: 100,
