@@ -1,6 +1,6 @@
 # mindfulness app
 
-react-native-track-player 導入後に build できなくなり、過去の branch に戻しても build できず、再構築。
+react-native-track-player 導入後に build できなくなり、過去の branch に戻しても build できず、再構築。  
 以下の機能を実装。
 
 - アプリを開いたら、音声一覧画面が表示されている。
