@@ -5,6 +5,7 @@ import { IconButton } from 'react-native-paper';
 import RNTrackPlayer from 'react-native-track-player';
 import { useTrackPlayerProgress, TrackPlayerEvents } from 'react-native-track-player';
 import Slider from '@react-native-community/slider';
+import { useNavigation } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   container: {
@@ -36,12 +37,16 @@ function addZero(num) {
 }
 
 export default function Player({ route }) {
+  const navigation = useNavigation();
   const { position, duration } = useTrackPlayerProgress();
+  const onGoBack = () => {
+    RNTrackPlayer.stop();
+    navigation.goBack();
+  };
+
   const [playbackState, setPlaybackState] = useState(RNTrackPlayer.STATE_NONE);
   console.log(playbackState);
   const { item } = route.params;
-  //const [isPlaying, setIsPlaying] = useState(true);
-  //  const duration = item.duration;
   console.log(duration);
   console.log(position);
   useEffect(() => {
@@ -63,7 +68,7 @@ export default function Player({ route }) {
   }, []);
   return (
     <View style={styles.container}>
-      <IconButton icon={'arrow-left'} size={30} onPress={() => console.log()} />
+      <IconButton icon={'arrow-left'} size={30} onPress={onGoBack} />
       <Text>{item.title}</Text>
       <Image source={item.artwork} style={{ width: 200, height: 200 }} />
       <Slider

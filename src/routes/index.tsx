@@ -7,6 +7,7 @@ import { PLAYLIST, QANDA, SETTINGS, PLAYER } from './../constants/path';
 
 //tab
 const Tab = createBottomTabNavigator();
+
 function TabNavigator() {
   return (
     <Tab.Navigator>
@@ -19,11 +20,30 @@ function TabNavigator() {
 
 //stack
 const Stack = createStackNavigator();
+
 export default function StackNavigator() {
   return (
     <Stack.Navigator mode="modal">
-      <Stack.Screen name="Home" component={TabNavigator} />
-      <Stack.Screen name={PLAYER} component={Player} options={({ route }) => ({ title: route.params.item.title })} />
+      <Stack.Screen
+        name="MindfulApp"
+        component={TabNavigator}
+        options={{
+          headerStyle: { backgroundColor: 'purple' },
+          headerTintColor: 'white',
+        }}
+      />
+      <Stack.Screen
+        name={PLAYER}
+        component={Player}
+        options={{
+          headerShown: false,
+        }}
+        /*
+        options={({ route }) => ({
+          headerTitle: route.params.item.title,
+        })}
+        */
+      />
     </Stack.Navigator>
   );
 }
