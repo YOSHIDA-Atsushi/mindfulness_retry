@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { FlatList, TouchableOpacity } from 'react-native';
 import { soundData } from './../../../constants/sounddata';
 import { PLAYER } from './../../../constants/path';
-import TrackListItem from './../../atoms/TrackListItem';
+import TrackListItem from '../../molecules/TrackListItem';
 
 //const Layout = (props: any) => <SafeAreaView>{props.children}</SafeAreaView>;
 
