@@ -3,7 +3,7 @@ import { Dimensions, View, Text, StyleSheet, Image /*TouchableOpacity*/ } from '
 import SafeAreaView from 'react-native-safe-area-view';
 import { IconButton } from 'react-native-paper';
 import RNTrackPlayer from 'react-native-track-player';
-import { useTrackPlayerProgress, TrackPlayerEvents } from 'react-native-track-player';
+import { useTrackPlayerProgress, TrackPlayerEvents } from 'react-native-track-player'; //this is active
 import Slider from '@react-native-community/slider';
 import { useNavigation } from '@react-navigation/native';
 
@@ -54,17 +54,14 @@ export default function Player({ route }) {
     navigation.goBack();
   };
 
+  const [positionWhilePausing, setPositionWhilePausing] = useState(0);
   const [playbackState, setPlaybackState] = useState(RNTrackPlayer.STATE_NONE);
-  console.log(playbackState);
   const { item } = route.params;
-  console.log(duration);
-  console.log(position);
   const screenWidth = Dimensions.get('window').width;
   useEffect(() => {
     RNTrackPlayer.setupPlayer();
     RNTrackPlayer.add([item]);
     RNTrackPlayer.play();
-    console.log(RNTrackPlayer.STATE_PAUSED);
     async function setPlayerState() {
       const playerState = await RNTrackPlayer.getState();
       setPlaybackState(playerState);
@@ -93,21 +90,35 @@ export default function Player({ route }) {
           maximumValue={duration}
           minimumTrackTintColor="#FFFFFF"
           maximumTrackTintColor="#000000"
-          onValueChange={time => {
+          onValueChange={async time => {
             RNTrackPlayer.seekTo(time);
+            playbackState === RNTrackPlayer.STATE_PLAYING ? '' : setPositionWhilePausing(time);
           }}
           value={position}
         />
         <Text style={styles.time}>
-          {Math.floor(position / 60)}:{addZero(Math.floor(position % 60))} / {Math.floor(duration / 60)}:
-          {addZero(Math.floor(duration % 60))}
+          {playbackState === RNTrackPlayer.STATE_PLAYING
+            ? Math.floor(position / 60)
+            : Math.floor(positionWhilePausing / 60)}
+          :
+          {addZero(
+            playbackState === RNTrackPlayer.STATE_PLAYING
+              ? Math.floor(position % 60)
+              : Math.floor(positionWhilePausing % 60),
+          )}{' '}
+          / {Math.floor(duration / 60)}:{addZero(Math.floor(duration % 60))}
         </Text>
 
         <IconButton
           icon={playbackState === RNTrackPlayer.STATE_PLAYING ? 'pause' : 'play'}
           size={60}
-          onPress={() => {
-            playbackState === RNTrackPlayer.STATE_PLAYING ? RNTrackPlayer.pause() : RNTrackPlayer.play();
+          onPress={async () => {
+            if (playbackState === RNTrackPlayer.STATE_PLAYING) {
+              RNTrackPlayer.pause();
+              setPositionWhilePausing(await RNTrackPlayer.getPosition());
+            } else {
+              RNTrackPlayer.play();
+            }
           }}
         />
       </View>

@@ -52,6 +52,7 @@ export default function StackNavigator() {
         options={{
           headerStyle: { backgroundColor: 'purple' },
           headerTintColor: 'white',
+          headerTitleAlign: 'center',
         }}
       />
       <Stack.Screen
