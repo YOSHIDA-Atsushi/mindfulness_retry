@@ -15,6 +15,12 @@ react-native-track-player 導入後に build できなくなり、過去の bran
 
 ## 問題点
 
-既知の問題：一時停止中に slider を操作しても、progress が更新されない。  
-https://github.com/react-native-kit/react-native-track-player/issues/851  
-→ 仕方なく、useState をもう一つ用意して、一時停止中はそちらの変数を使用。ただし再生再開時に表示が１秒乱れる。
+- 既知の問題：一時停止中に slider を操作しても、progress が更新されない。  
+  https://github.com/react-native-kit/react-native-track-player/issues/851  
+  → 仕方なく、useState をもう一つ用意して、一時停止中はそちらの変数を使用。ただし再生再開時に表示が１秒乱れる。
+
+## 解決済の問題点
+
+- iOS のみ back button を押しても track player library が再生し続け、他の track を選んでも前の曲が再生し続ける  
+  → player画面ではheaderは非表示にして自作 back buttonを置き、back buttonがタップされた際に player を stop()させる処理を追加。これで android とiOSで同じ挙動となった。
+- stateがplayingからpausedに変わる際に、

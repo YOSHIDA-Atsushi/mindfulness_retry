@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Dimensions, View, Text, StyleSheet, Image /*TouchableOpacity*/ } from 'react-native';
-import SafeAreaView from 'react-native-safe-area-view';
+import { Dimensions, View, Text, StyleSheet, Image, SafeAreaView } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import RNTrackPlayer from 'react-native-track-player';
 import { useTrackPlayerProgress, TrackPlayerEvents } from 'react-native-track-player'; //this is active
 import Slider from '@react-native-community/slider';
 import { useNavigation } from '@react-navigation/native';
+import Time from './../../atoms/Time';
+import BackButton from './../../atoms/BackButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,51 +14,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  header: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  backButton: { flex: 1, alignItems: 'flex-start', marginLeft: 10 },
-
   body: {
     flex: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },
   title: { fontSize: 30, marginBottom: 15 },
-  time: { fontSize: 20, marginBottom: 10 },
 });
-/*
-//RNTrackPlayer.getState() returns 2 (stopped) or 3(playing). would like a boolean
-function stateNumToBoolean(i: string | number): boolean {
-  switch (i) {
-    case 2:
-      return false;
-    case 3:
-      return true;
-    default:
-      return false;
-  }
-}
-*/
-
-function addZero(num) {
-  const str = '0' + num;
-  return str.substr(-2, 2);
-}
 
 export default function Player({ route }) {
+  const { item } = route.params;
   const navigation = useNavigation();
+  const [playbackState, setPlaybackState] = useState(RNTrackPlayer.STATE_NONE);
   const { position, duration } = useTrackPlayerProgress();
+  const [positionWhilePausing, setPositionWhilePausing] = useState(0);
+  const screenWidth = Dimensions.get('window').width;
   const onGoBack = () => {
     RNTrackPlayer.stop();
     navigation.goBack();
   };
 
-  const [positionWhilePausing, setPositionWhilePausing] = useState(0);
-  const [playbackState, setPlaybackState] = useState(RNTrackPlayer.STATE_NONE);
-  const { item } = route.params;
-  const screenWidth = Dimensions.get('window').width;
   useEffect(() => {
     RNTrackPlayer.setupPlayer();
     RNTrackPlayer.add([item]);
@@ -76,11 +52,7 @@ export default function Player({ route }) {
   }, []);
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.backButton}>
-          <IconButton style={styles.backButton} icon={'arrow-left'} size={35} onPress={onGoBack} />
-        </View>
-      </View>
+      <BackButton onGoBack={onGoBack} />
       <View style={styles.body}>
         <Text style={styles.title}>{item.title}</Text>
         <Image source={item.artwork} style={{ width: screenWidth * 0.9, height: screenWidth * 0.6 }} />
@@ -96,19 +68,12 @@ export default function Player({ route }) {
           }}
           value={position}
         />
-        <Text style={styles.time}>
-          {playbackState === RNTrackPlayer.STATE_PLAYING
-            ? Math.floor(position / 60)
-            : Math.floor(positionWhilePausing / 60)}
-          :
-          {addZero(
-            playbackState === RNTrackPlayer.STATE_PLAYING
-              ? Math.floor(position % 60)
-              : Math.floor(positionWhilePausing % 60),
-          )}{' '}
-          / {Math.floor(duration / 60)}:{addZero(Math.floor(duration % 60))}
-        </Text>
-
+        <Time
+          playbackState={playbackState}
+          position={position}
+          positionWhilePausing={positionWhilePausing}
+          duration={duration}
+        />
         <IconButton
           icon={playbackState === RNTrackPlayer.STATE_PLAYING ? 'pause' : 'play'}
           size={60}
