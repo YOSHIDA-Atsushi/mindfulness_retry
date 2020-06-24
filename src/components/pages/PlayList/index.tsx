@@ -7,7 +7,6 @@ import TrackListItem from './../../atoms/TrackListItem';
 
 //const Layout = (props: any) => <SafeAreaView>{props.children}</SafeAreaView>;
 
-//flatlist
 export default function PlayList() {
   const { navigate } = useNavigation();
   return (

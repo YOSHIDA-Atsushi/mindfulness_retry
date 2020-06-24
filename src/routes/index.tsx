@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-//import SafeAreaView from 'react-native-safe-area-view';
 import { QandA, Settings, Player, PlayList } from './../components/pages';
 import { PLAYLIST, QANDA, SETTINGS, PLAYER } from './../constants/path';
 import Ionicons from 'react-native-vector-icons/Ionicons'; // this is active
